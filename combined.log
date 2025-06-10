@@ -1,0 +1,106 @@
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven-test","timestamp":"2025-06-07T16:28:27.569Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven-test","timestamp":"2025-06-07T16:28:27.575Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven-test","timestamp":"2025-06-07T16:28:27.594Z"}
+{"level":"info","message":"MongoDB disconnected","timestamp":"2025-06-07T16:28:27.936Z"}
+{"level":"info","message":"MongoDB disconnected","timestamp":"2025-06-07T16:28:28.017Z"}
+{"level":"info","message":"MongoDB disconnected","timestamp":"2025-06-07T16:28:33.005Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven-test","timestamp":"2025-06-07T16:31:46.006Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven-test","timestamp":"2025-06-07T16:31:46.010Z"}
+{"level":"info","message":"MongoDB disconnected","timestamp":"2025-06-07T16:31:46.462Z"}
+{"level":"info","message":"MongoDB disconnected","timestamp":"2025-06-07T16:31:46.829Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven-test","timestamp":"2025-06-07T16:33:11.097Z"}
+{"level":"info","message":"MongoDB disconnected","timestamp":"2025-06-07T16:33:11.508Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven-test","timestamp":"2025-06-07T16:33:11.512Z"}
+{"level":"info","message":"MongoDB disconnected","timestamp":"2025-06-07T16:33:12.237Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven-test","timestamp":"2025-06-07T16:34:02.486Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven-test","timestamp":"2025-06-07T16:34:02.864Z"}
+{"level":"info","message":"MongoDB disconnected","timestamp":"2025-06-07T16:34:02.880Z"}
+{"level":"info","message":"MongoDB disconnected","timestamp":"2025-06-07T16:34:03.487Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T16:38:55.833Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-06-07T16:38:55.839Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T16:44:16.309Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-06-07T16:44:16.315Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T16:51:04.620Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:36:56.036Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:36:57.331Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:37:07.529Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:37:26.982Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:38:20.241Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:38:23.452Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:38:26.221Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:38:31.235Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:38:35.850Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:47:59.570Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:52:57.608Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:53:32.433Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:53:35.451Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:53:38.596Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:55:15.443Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:55:18.162Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:55:21.862Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:55:26.183Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:55:35.032Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:55:40.394Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:55:44.524Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:55:47.453Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:56:02.424Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:57:18.314Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:57:35.758Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:57:38.041Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:57:40.937Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:58:04.879Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:58:08.294Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:58:14.483Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:58:20.094Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:58:41.948Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:59:28.987Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T17:59:35.646Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:00:19.574Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:03:05.794Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:03:11.298Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:03:16.018Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:03:21.939Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:11:33.510Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:14:51.546Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:14:57.699Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:15:00.702Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:15:05.426Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:20:23.958Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:20:28.105Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:20:50.085Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:24:56.482Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:25:00.701Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:25:26.898Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:33:18.667Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:33:49.164Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:43:45.074Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:43:48.585Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:44:28.232Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:51:13.788Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:51:15.149Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:51:17.270Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:51:48.737Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:51:57.370Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:51:58.962Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:52:00.194Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:52:02.711Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:52:03.886Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:52:13.831Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:52:27.838Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:52:33.473Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:53:06.333Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:53:30.642Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T18:53:32.992Z"}
+{"cause":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"localhost:27017":{"$clusterTime":null,"address":"localhost:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":1508743,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"errorLabelSet":{},"level":"error","message":"Database connection failed: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017","reason":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"localhost:27017":{"$clusterTime":null,"address":"localhost:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":1508743,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"stack":"MongooseServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017\n    at _handleConnectionErrors (D:\\GameHaven- RestAPI Nodejs\\gamehaven-api\\node_modules\\mongoose\\lib\\connection.js:1165:11)\n    at NativeConnection.openUri (D:\\GameHaven- RestAPI Nodejs\\gamehaven-api\\node_modules\\mongoose\\lib\\connection.js:1096:11)\n    at async connectDB (D:\\GameHaven- RestAPI Nodejs\\gamehaven-api\\src\\config\\db.js:8:5)","timestamp":"2025-06-07T19:40:17.218Z"}
+{"cause":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"localhost:27017":{"$clusterTime":null,"address":"localhost:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":1963501,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"errorLabelSet":{},"level":"error","message":"Database connection failed: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017","reason":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"localhost:27017":{"$clusterTime":null,"address":"localhost:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":1963501,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"stack":"MongooseServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017\n    at _handleConnectionErrors (D:\\GameHaven- RestAPI Nodejs\\gamehaven-api\\node_modules\\mongoose\\lib\\connection.js:1165:11)\n    at NativeConnection.openUri (D:\\GameHaven- RestAPI Nodejs\\gamehaven-api\\node_modules\\mongoose\\lib\\connection.js:1096:11)\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processTimers (node:internal/timers:520:9)\n    at async connectDB (D:\\GameHaven- RestAPI Nodejs\\gamehaven-api\\src\\config\\db.js:8:5)","timestamp":"2025-06-07T19:47:52.121Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T19:53:33.901Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T20:00:09.187Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T20:00:12.252Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T20:00:15.156Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T20:00:21.422Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T20:01:30.747Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T20:08:21.412Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T20:08:33.394Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T20:08:42.075Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T20:08:51.450Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-07T20:11:13.745Z"}
