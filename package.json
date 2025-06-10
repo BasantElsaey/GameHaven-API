@@ -15,13 +15,18 @@
   "name": "gamehaven-api",
   "version": "1.0.0",
   "description": "gamehaven-api is a RESTful API for the GameHaven platform, providing endpoints for user authentication, game management, and more.",
-  "main": "app.js",
+  "main": "server.js",
   "directories": {
     "test": "tests"
   },
+  "jest": {
+    "setupFilesAfterEnv": ["./tests/setup.js"],
+    "testEnvironment": "node",
+    "testTimeout": 100000
+  },
   "scripts": {
-    "start": "nodemon app.js",
-    "test": "jest"
+    "start": "nodemon server.js",
+    "test": "jest --runInBand"
   },
   "keywords": [],
   "author": "",
