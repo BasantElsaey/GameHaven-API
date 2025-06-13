@@ -1,37 +1,66 @@
-// const request = require('supertest');
-// const app = require('../app'); 
-// require('./setup');
-// const Wishlist = require('../src/models/Wishlist.model');
+const supertest = require('supertest');
+const app = require('../app');
+const User = require('../src/models/User.model');
+const Game = require('../src/models/Game.model');
+const request = supertest(app);
 
-// describe('Wishlist Routes', () => {
-//   describe('POST /api/wishlist', () => {
-//     it('should add game to wishlist', async () => {
-//       const game = await require('../src/models/Game.model').create({
-//         title: 'Test Game',
-//         price: 29.99,
-//       });
-//       const res = await request(app)
-//         .post('/api/wishlist')
-//         .send({ gameId: game._id })
-//         .expect(201);
-//       expect(res.body).toHaveProperty('gameId', game._id.toString());
-//     });
 
-//     it('should return 400 for invalid data', async () => {
-//       const res = await request(app)
-//         .post('/api/wishlist')
-//         .send({})
-//         .expect(400);
-//       expect(res.body).toHaveProperty('errors');
-//     });
-//   });
+describe("wishlist controller", () => {
+let token=null;
+let userId=null;
+let gameId=null;
 
-//   describe('GET /api/wishlist', () => {
-//     it('should get wishlist items', async () => {
-//       const res = await request(app)
-//         .get('/api/wishlist')
-//         .expect(200);
-//       expect(res.body).toHaveProperty('items');
-//     });
-//   });
-// });
+beforeAll(async () => {
+    // Create test user
+    const user = {
+        name: "Mohamed",
+        email: `mohamed${Date.now()}@email.com`,
+        password: "test123",
+    }; 
+
+    await User.create(user);
+
+    // Create test game
+        const game = await Game.create({ 
+            title: "Test Game", 
+            description: "description", 
+            genre: "Fantasy", 
+            platform: "Steam", 
+            price: 100, 
+            stock: 10 
+        });
+        gameId = game._id;
+
+        const logged = await request.post("/api/auth/login").send({ email: user.email, password: user.password });
+        userId = logged.body.user._id;
+        token = logged.body.token;
+    });
+
+        it('Add game to wishlist', async () => {
+        const res = await request
+        .post("/api/wishlist")
+        .send({gameId})
+        .set('Authorization', `Bearer ${token}`);
+
+        expect(res.statusCode).toBe(200);
+        expect(res.body.games).toContainEqual(gameId.toString());
+    });
+
+    it('Get user wishlist', async () => {
+        const res = await request
+        .get('/api/wishlist')
+        .set('Authorization', `Bearer ${token}`);
+
+        expect(res.statusCode).toBe(200);
+        expect(res.body.games.length).toBeGreaterThan(0);
+    });
+
+    it('Remove game from wishlist', async () => {
+        const res = await request
+        .delete(`/api/wishlist/${gameId}`)
+        .set('Authorization', `Bearer ${token}`);
+
+        expect(res.statusCode).toBe(200);
+        expect(res.body.games).not.toContainEqual(gameId.toString());
+    });
+});
