@@ -6,7 +6,6 @@ const { connectDB } = require('./src/config/db');
 const env = require('./src/config/env');
 const errorMiddleware = require('./src/middlewares/error.middleware');
 const loggerMiddleware = require('./src/middlewares/logger.middleware');
-const errorMiddleware = require('./src/middlewares/error.middleware');
 const authRoutes = require('./src/routes/auth.routes');
 const gameRoutes = require('./src/routes/game.routes');
 const cartRoutes = require('./src/routes/cart.routes');

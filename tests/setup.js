@@ -17,12 +17,6 @@ afterAll(async () => {
     await collection.deleteMany();
   }
   await disconnectDB();
-  process.env.NODE_ENV = 'development'; 
 });
 
-beforeEach(async () => {
-  const collections = await mongoose.connection.db.collections();
-  for (let collection of collections) {
-    await collection.deleteMany({});
-  }
-});
+module.exports = { server };
