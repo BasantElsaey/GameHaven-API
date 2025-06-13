@@ -11,6 +11,8 @@ const gameRoutes = require('./src/routes/game.routes');
 const cartRoutes = require('./src/routes/cart.routes');
 const reviewRoutes = require('./src/routes/review.routes');
 const categoryRoutes = require('./src/routes/category.routes');
+const orderRoutes = require('./src/routes/order.routes');
+
 
 const app = express();
 
@@ -26,7 +28,7 @@ app.use(loggerMiddleware);
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/cart', cartRoutes);
-// app.use('/api/orders', orderRoutes);
+app.use('/api/orders', orderRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/categories', categoryRoutes);
 // app.use('/api/wishlist', wishlistRoutes);
