@@ -1,0 +1,253 @@
+openapi: 3.0.3
+info:
+  title: GameHaven API
+  description: API for managing authentication, games, and reviews in the GameHaven platform
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Local server
+paths:
+  /api/auth/register:
+    post:
+      summary: Register a new user
+      description: Creates a new user account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username: { type: string }
+                email: { type: string }
+                password: { type: string }
+              required: [username, email, password]
+      responses:
+        '201':
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token: { type: string }
+        '400':
+          description: Invalid input
+  /api/auth/login:
+    post:
+      summary: User login
+      description: Authenticates a user and returns a JWT token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: { type: string }
+                password: { type: string }
+              required: [email, password]
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token: { type: string }
+        '401':
+          description: Invalid credentials
+  /api/games:
+    get:
+      summary: Get all games
+      description: Retrieves a list of all games
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: { type: string }
+                    title: { type: string }
+                    coverImage: { type: string }
+        '500':
+          description: Server error
+    post:
+      summary: Create a new game
+      description: Adds a new game (admin only)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title: { type: string }
+                description: { type: string }
+                coverImage: { type: string, format: binary }
+              required: [title, coverImage]
+      responses:
+        '201':
+          description: Game created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden (non-admin)
+  /api/games/{id}:
+    get:
+      summary: Get a specific game
+      description: Retrieves details of a game by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+                  title: { type: string }
+                  coverImage: { type: string }
+        '404':
+          description: Game not found
+    put:
+      summary: Update a game
+      description: Updates game details (admin only)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title: { type: string }
+                description: { type: string }
+                coverImage: { type: string, format: binary }
+      responses:
+        '200':
+          description: Game updated
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Game not found
+    delete:
+      summary: Delete a game
+      description: Removes a game (admin only)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '204':
+          description: Game deleted
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Game not found
+  /api/reviews/{gameId}:
+    post:
+      summary: Add a review
+      description: Adds a review for a specific game (authenticated users)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: gameId
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rating: { type: integer, minimum: 1, maximum: 5 }
+                comment: { type: string }
+              required: [rating]
+      responses:
+        '201':
+          description: Review added
+        '401':
+          description: Unauthorized
+        '404':
+          description: Game not found
+    get:
+      summary: Get reviews for a game
+      description: Retrieves all reviews for a specific game
+      parameters:
+        - name: gameId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: { type: string }
+                    rating: { type: integer }
+                    comment: { type: string }
+                    userId: { type: string }
+        '404':
+          description: Game not found
+  /api/reviews/user:
+    get:
+      summary: Get user's reviews
+      description: Retrieves all reviews by the authenticated user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: { type: string }
+                    rating: { type: integer }
+                    comment: { type: string }
+                    gameId: { type: string }
+        '401':
+          description: Unauthorized
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

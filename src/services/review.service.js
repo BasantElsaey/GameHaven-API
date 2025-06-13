@@ -31,9 +31,6 @@ class ReviewService {
     return await Review.find({ user: userId }).populate('game', 'title');
   }
 
-  async getAllReviews() {
-    return await Review.find().populate('user', 'name').populate('game', 'title');
-  }
 }
 
 module.exports = new ReviewService();

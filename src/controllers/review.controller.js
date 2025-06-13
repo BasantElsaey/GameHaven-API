@@ -52,15 +52,4 @@ const getUserReviews = [
   },
 ];
 
-const getAllReviewsForAllGames = [
-  async (req, res, next) => {
-    try {
-      const reviews = await reviewService.getAllReviews();
-      res.status(200).json(reviews);
-    } catch (err) {
-      next(err);
-    }
-  },
-];
-
-module.exports = { addReview, getReviews, getUserReviews, getAllReviewsForAllGames };
+module.exports = { addReview, getReviews, getUserReviews };

@@ -1,5 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
+const swaggerUi = require('swagger-ui-express');
+const yaml = require('yamljs');
 const { connectDB } = require('./src/config/db');
 const env = require('./src/config/env');
 const errorMiddleware = require('./src/middlewares/error.middleware');
@@ -15,22 +17,27 @@ const { upload } = require('./src/utils/uploadConfig');
 
 const app = express();
 
+// Load Swagger YAML
+const swaggerDocument = yaml.load('./swagger.yaml');
+
 // Middleware
-app.use(express.json()); // للـ JSON requests
+app.use(express.json()); 
 app.use(morgan('combined'));
 app.use(loggerMiddleware);
 
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/cart', cartRoutes);
-app.use('/api/orders', orderRoutes);
+// app.use('/api/orders', orderRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/categories', categoryRoutes);
-app.use('/api/wishlist', wishlistRoutes);
+// app.use('/api/wishlist', wishlistRoutes);
 app.use('/api/games', gameRoutes); 
 
 // Error Handling
 app.use(errorMiddleware);
+// Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Start Server
 const PORT = env.PORT || 3000;
