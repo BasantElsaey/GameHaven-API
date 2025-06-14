@@ -6,12 +6,13 @@ const orderRouter = express.Router();
 
 orderRouter.use(authenticate);
 
-orderRouter.post("/",restrictTo('user'), orderController.placeOrderController);
+orderRouter.post("/",restrictTo('user'), orderController.placeOrder);
 
-orderRouter.get("/", restrictTo('user'),orderController.getUserOrdersController);
+orderRouter.get("/", restrictTo('user'),orderController.getUserOrders);
 
-orderRouter.put("/:orderId/status", restrictTo('user'),orderController.updateOrderStatusController);
+orderRouter.put("/:orderId/status", restrictTo('user'),orderController.updateOrderStatus);
 
-orderRouter.delete("/:orderId", restrictTo('user'),orderController.cancelOrderController);  
+orderRouter.delete("/:orderId", restrictTo('user'),orderController.cancelOrder);  
 
 module.exports = orderRouter;
+

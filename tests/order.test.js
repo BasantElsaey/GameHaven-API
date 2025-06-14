@@ -31,7 +31,7 @@ describe("Order API", () => {
     await request.post("/api/auth/register").send(user);
     const loginRes = await request.post("/api/auth/login").send(user);
     token = loginRes.body.token;
-    userId = loginRes.body.user._id;
+    userId = loginRes.body.user.id;
 
     await request
       .post("/api/cart")
@@ -39,21 +39,37 @@ describe("Order API", () => {
       .set("authorization", `Bearer ${token}`);
   });
 
-  it("POST /api/order - should create an order from cart", async () => {
+
+  it("POST /api/orders - should create an order, clear cart, and reduce game stock", async () => {
+    const gameBefore = await Game.findById(gameId);
+    const initialStock = gameBefore.stock;
+
+    // Place the order
     const res = await request
-      .post("/api/order")
+      .post("/api/orders")
       .set("authorization", `Bearer ${token}`);
 
     expect(res.status).toBe(201);
     expect(res.body.message).toBe("Order placed successfully");
     expect(res.body.data.items).toHaveLength(1);
     expect(res.body.data.total).toBe(120); // 60 * 2
+
     orderId = res.body.data._id;
+
+    const cart = await Cart.findOne({
+      userId,
+    });
+
+
+    expect(cart.items).toHaveLength(0);
+
+    const gameAfter = await Game.findById(gameId);
+    expect(gameAfter.stock).toBe(initialStock - 2);
   });
 
-  it("GET /api/order - should get user's orders", async () => {
+  it("GET /api/orders - should get user's orders", async () => {
     const res = await request
-      .get("/api/order")
+      .get("/api/orders")
       .set("authorization", `Bearer ${token}`);
 
     expect(res.status).toBe(200);
@@ -67,9 +83,9 @@ describe("Order API", () => {
     expect(order.status).toBe("placed");
   });
 
-  it("DELETE /api/order/:orderId - should cancel the order", async () => {
+  it("DELETE /api/orders/:orderId - should cancel the order", async () => {
     const res = await request
-      .delete(`/api/order/${orderId}`)
+      .delete(`/api/orders/${orderId}`)
       .set("authorization", `Bearer ${token}`);
 
     expect(res.status).toBe(200);
@@ -77,4 +93,3 @@ describe("Order API", () => {
     expect(res.body.data.status).toBe("cancelled");
   });
 });
-
