@@ -27,7 +27,7 @@ app.use(loggerMiddleware);
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/cart', cartRoutes);
-// app.use('/api/orders', orderRoutes);
+app.use('/api/orders', orderRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/wishlist', wishlistRoutes);
