@@ -1,14 +1,10 @@
 const express = require('express');
-const wishlistRoutes = express.Router();
+const router = express.Router();
+const wishlistController = require('../controllers/wishlist.controller');
 const { authenticate } = require('../middlewares/auth.middleware');
-const {
-    addToWishlist,
-    removeFromWishlist,
-    getWishlist,
-} = require('../controllers/wishlist.controller');
 
-wishlistRoutes.post('/',authenticate, addToWishlist);
-wishlistRoutes.delete('/:gameId',authenticate, removeFromWishlist);
-wishlistRoutes.get('/',authenticate, getWishlist);
+router.post('/', authenticate, wishlistController.addToWishlist);
+router.delete('/:gameId', authenticate, wishlistController.removeFromWishlist);
+router.get('/', authenticate, wishlistController.getWishlist);
 
-module.exports = wishlistRoutes;
+module.exports = router;
