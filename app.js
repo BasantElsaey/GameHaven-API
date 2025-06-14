@@ -12,6 +12,7 @@ const cartRoutes = require('./src/routes/cart.routes');
 const reviewRoutes = require('./src/routes/review.routes');
 const categoryRoutes = require('./src/routes/category.routes');
 const wishlistRoutes = require('./src/routes/wishlist.routes');
+const orderRoutes = require('./src/routes/order.routes');
 
 const app = express();
 
@@ -32,7 +33,6 @@ app.use('/api/reviews', reviewRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/wishlist', wishlistRoutes);
 app.use('/api/games', gameRoutes); 
-app.use('/api/games', gameRoutes);
 
 // Error Handler
 app.use(errorMiddleware);

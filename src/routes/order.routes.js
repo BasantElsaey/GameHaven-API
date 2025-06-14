@@ -1,18 +1,11 @@
 const express = require("express");
-const orderController = require('../controllers/order.controller');
-const { authenticate, restrictTo } = require('../middlewares/auth.middleware');
+const router = express.Router();
+const orderController = require("../controllers/order.controller");
+const { authenticate } = require("../middlewares/auth.middleware");
 
-const orderRouter = express.Router();
+router.post("/", authenticate, orderController.placeOrder);
+router.get("/", authenticate, orderController.getUserOrders);
+router.put("/:orderId/status", authenticate, orderController.updateOrderStatus);
+router.delete("/:orderId", authenticate, orderController.cancelOrder);
 
-orderRouter.use(authenticate);
-
-orderRouter.post("/",restrictTo('user'), orderController.placeOrder);
-
-orderRouter.get("/", restrictTo('user'),orderController.getUserOrders);
-
-orderRouter.put("/:orderId/status", restrictTo('user'),orderController.updateOrderStatus);
-
-orderRouter.delete("/:orderId", restrictTo('user'),orderController.cancelOrder);  
-
-module.exports = orderRouter;
-
+module.exports = router;
