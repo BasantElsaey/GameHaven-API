@@ -4,8 +4,8 @@ info:
   description: RESTful API for GameHaven, a platform for managing games, user carts, reviews, wishlists, orders, and categories.
   version: 1.0.0
 servers:
-  - url: http://localhost:3000
-    description: Development Server
+  - url: https://gamehaven-api-production-eff7.up.railway.app/
+    description: Production Server
 components:
   securitySchemes:
     bearerAuth:

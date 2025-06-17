@@ -37,6 +37,6 @@ app.use('/api/games', gameRoutes);
 // Error Handler
 app.use(errorMiddleware);
 // Swagger UI
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 module.exports = app;
