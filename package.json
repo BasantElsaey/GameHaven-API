@@ -28,6 +28,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "build": "npm install --omit=dev",
     "test": "jest --runInBand"
   },
   "keywords": [],

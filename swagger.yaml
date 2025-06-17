@@ -4,8 +4,8 @@ info:
   description: RESTful API for GameHaven, a platform for managing games, user carts, reviews, wishlists, orders, and categories.
   version: 1.0.0
 servers:
-  - url: /api
-    description: Base URL for the API
+  - url: http://localhost:3000
+    description: Development Server
 components:
   securitySchemes:
     bearerAuth:
@@ -173,7 +173,7 @@ components:
       required:
         - user
 paths:
-  /auth/register:
+  /api/auth/register:
     post:
       tags:
         - Authentication
@@ -214,7 +214,7 @@ paths:
                     example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
         '400':
           description: Bad request (e.g., missing fields or email exists)
-  /auth/login:
+  /api/auth/login:
     post:
       tags:
         - Authentication
@@ -251,7 +251,7 @@ paths:
                     example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
         '401':
           description: Invalid credentials
-  /cart:
+  /api/cart:
     get:
       tags:
         - Cart
@@ -300,7 +300,7 @@ paths:
           description: Unauthorized
         '404':
           description: Game not found
-  /cart/{gameId}:
+  /api/cart/{gameId}:
     put:
       tags:
         - Cart
@@ -361,7 +361,7 @@ paths:
           description: Unauthorized
         '404':
           description: Item not found
-  /categories:
+  /api/categories:
     get:
       tags:
         - Categories
@@ -406,7 +406,7 @@ paths:
           description: Forbidden (admin only)
         '400':
           description: Bad request (e.g., category name exists)
-  /categories/{categoryId}:
+  /api/categories/{categoryId}:
     get:
       tags:
         - Categories
@@ -489,7 +489,7 @@ paths:
           description: Forbidden (admin only)
         '404':
           description: Category not found
-  /games:
+  /api/games:
     get:
       tags:
         - Games
@@ -560,7 +560,7 @@ paths:
           description: Forbidden (admin only)
         '400':
           description: Bad request
-  /games/{id}:
+  /api/games/{id}:
     get:
       tags:
         - Games
@@ -629,7 +629,7 @@ paths:
         '200':
           description: Game updated
           content:
-            application/json:
+            application/jsonBq:
               schema:
                 $ref: '#/components/schemas/Game'
         '401':
@@ -660,7 +660,7 @@ paths:
           description: Forbidden (admin only)
         '404':
           description: Game not found
-  /orders:
+  /api/orders:
     post:
       tags:
         - Orders
@@ -718,7 +718,7 @@ paths:
                   $ref: '#/components/schemas/Order'
         '401':
           description: Unauthorized
-  /orders/{orderId}/status:
+  /api/orders/{orderId}/status:
     put:
       tags:
         - Orders
@@ -756,7 +756,7 @@ paths:
           description: Unauthorized
         '404':
           description: Order not found
-  /orders/{orderId}:
+  /api/orders/{orderId}:
     delete:
       tags:
         - Orders
@@ -777,7 +777,7 @@ paths:
           description: Unauthorized
         '404':
           description: Order not found
-  /reviews/user:
+  /api/reviews/user:
     get:
       tags:
         - Reviews
@@ -795,7 +795,7 @@ paths:
                   $ref: '#/components/schemas/Review'
         '401':
           description: Unauthorized
-  /reviews/{gameId}:
+  /api/reviews/{gameId}:
     post:
       tags:
         - Reviews
@@ -860,7 +860,7 @@ paths:
                   $ref: '#/components/schemas/Review'
         '404':
           description: Game not found
-  /wishlist:
+  /api/wishlist:
     get:
       tags:
         - Wishlist
@@ -876,7 +876,7 @@ paths:
                 $ref: '#/components/schemas/Wishlist'
         '401':
           description: Unauthorized
-  /wishlist/{gameId}:
+  /api/wishlist/{gameId}:
     post:
       tags:
         - Wishlist
