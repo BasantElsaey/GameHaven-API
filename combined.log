@@ -193,3 +193,4 @@
 {"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-17T13:53:44.573Z"}
 {"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-17T13:55:05.156Z"}
 {"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-17T14:12:40.251Z"}
+{"level":"info","message":"MongoDB connected to mongodb://localhost:27017/gamehaven","timestamp":"2025-06-17T14:31:08.063Z"}

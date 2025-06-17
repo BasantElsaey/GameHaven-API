@@ -141,6 +141,7 @@ Get GameHaven running locally in a few simple steps! 🛠️
    -Edit .env with your settings:
    ```bash
    MONGODB_URI=<your-mongodb-uri>
+   MONGODB_URI_TEST=<your-test-mongodb-uri>
    JWT_SECRET=<your-secret-key>
    PORT=<your-port-number>
    ```
@@ -270,15 +271,19 @@ Create a .env file based on .env.example:
 
 ```bash
 MONGODB_URI=mongodb://localhost:27017/gamehaven
+MONGODB_URI_TEST=mongodb://localhost:27017/gamehaven_test
 JWT_SECRET=your_jwt_secret_key
 PORT=3000
 ```
 
 - MONGODB_URI: MongoDB connection string.
 
+- MONGODB_URI_TEST: MongoDB connection string for testing.
+
 - JWT_SECRET: Secret key for JWT signing.
 
 - PORT: Server port (default: 3000).
+
 
 ## 🤝 Contributing
 Contributions are welcome! 🙌 Follow these steps:
