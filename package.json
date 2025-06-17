@@ -27,8 +27,7 @@
     "testTimeout": 100000
   },
   "scripts": {
-    "start": "node server.js",
-    "build": "npm install --omit=dev",
+    "start": "nodemon server.js",
     "test": "jest --runInBand"
   },
   "keywords": [],
