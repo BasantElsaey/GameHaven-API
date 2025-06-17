@@ -1,16 +1,183 @@
 openapi: 3.0.3
 info:
   title: GameHaven API
-  description: API for managing authentication, games, and reviews in the GameHaven platform
+  description: RESTful API for GameHaven, a platform for managing games, user carts, reviews, wishlists, orders, and categories.
   version: 1.0.0
 servers:
-  - url: http://localhost:3000
-    description: Local server
+  - url: /api
+    description: Base URL for the API
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          example: john@example.com
+        password:
+          type: string
+          example: Password123!
+        role:
+          type: string
+          enum: [user, admin]
+          example: user
+      required:
+        - name
+        - email
+        - password
+    Game:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+        title:
+          type: string
+          example: Awesome Game
+        description:
+          type: string
+          example: An exciting action game.
+        platform:
+          type: string
+          example: PC
+        genre:
+          type: string
+          example: Action
+        price:
+          type: number
+          example: 59.99
+        stock:
+          type: number
+          example: 100
+        coverImage:
+          type: string
+          example: https://example.com/game.jpg
+        category:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+      required:
+        - title
+        - description
+        - platform
+        - genre
+        - price
+        - stock
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type: string
+          example: Action
+      required:
+        - name
+    Cart:
+      type: object
+      properties:
+        userId:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              gameId:
+                type: string
+                example: 123e4567-e89b-12d3-a456-426614174000
+              quantity:
+                type: integer
+                example: 1
+            required:
+              - gameId
+              - quantity
+      required:
+        - userId
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+        userId:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              gameId:
+                type: string
+                example: 123e4567-e89b-12d3-a456-426614174000
+              quantity:
+                type: integer
+                example: 1
+            required:
+              - gameId
+              - quantity
+        total:
+          type: number
+          example: 119.98
+        status:
+          type: string
+          enum: [placed, shipped, delivered, cancelled]
+          example: placed
+      required:
+        - userId
+        - items
+    Review:
+      type: object
+      properties:
+        user:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+        game:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+        rating:
+          type: integer
+          example: 5
+        comment:
+          type: string
+          example: Amazing game!
+      required:
+        - user
+        - game
+        - rating
+        - comment
+    Wishlist:
+      type: object
+      properties:
+        user:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+        games:
+          type: array
+          items:
+            type: string
+            example: 123e4567-e89b-12d3-a456-426614174000
+      required:
+        - user
 paths:
-  /api/auth/register:
+  /auth/register:
     post:
+      tags:
+        - Authentication
       summary: Register a new user
-      description: Creates a new user account
       requestBody:
         required: true
         content:
@@ -18,10 +185,19 @@ paths:
             schema:
               type: object
               properties:
-                username: { type: string }
-                email: { type: string }
-                password: { type: string }
-              required: [username, email, password]
+                name:
+                  type: string
+                  example: John Doe
+                email:
+                  type: string
+                  example: john@example.com
+                password:
+                  type: string
+                  example: Password123!
+              required:
+                - name
+                - email
+                - password
       responses:
         '201':
           description: User registered successfully
@@ -30,13 +206,19 @@ paths:
               schema:
                 type: object
                 properties:
-                  token: { type: string }
+                  message:
+                    type: string
+                    example: User registered successfully
+                  token:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
         '400':
-          description: Invalid input
-  /api/auth/login:
+          description: Bad request (e.g., missing fields or email exists)
+  /auth/login:
     post:
-      summary: User login
-      description: Authenticates a user and returns a JWT token
+      tags:
+        - Authentication
+      summary: Log in a user
       requestBody:
         required: true
         content:
@@ -44,94 +226,289 @@ paths:
             schema:
               type: object
               properties:
-                email: { type: string }
-                password: { type: string }
-              required: [email, password]
+                email:
+                  type: string
+                  example: john@example.com
+                password:
+                  type: string
+                  example: Password123!
+              required:
+                - email
+                - password
       responses:
         '200':
-          description: Login successful
+          description: User logged in successfully
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  token: { type: string }
+                  message:
+                    type: string
+                    example: Login successful
+                  token:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
         '401':
           description: Invalid credentials
-  /api/games:
+  /cart:
     get:
-      summary: Get all games
-      description: Retrieves a list of all games
+      tags:
+        - Cart
+      summary: Get user's cart items
+      security:
+        - bearerAuth: []
       responses:
         '200':
-          description: Successful response
+          description: List of cart items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        '401':
+          description: Unauthorized
+    post:
+      tags:
+        - Cart
+      summary: Add item to cart
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                gameId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                quantity:
+                  type: integer
+                  example: 1
+              required:
+                - gameId
+                - quantity
+      responses:
+        '201':
+          description: Item added to cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Game not found
+  /cart/{gameId}:
+    put:
+      tags:
+        - Cart
+      summary: Update cart item quantity
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: gameId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 123e4567-e89b-12d3-a456-426614174000
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  example: 2
+              required:
+                - quantity
+      responses:
+        '200':
+          description: Cart item updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Item not found
+    delete:
+      tags:
+        - Cart
+      summary: Remove item from cart
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: gameId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Item removed from cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Item not found
+  /categories:
+    get:
+      tags:
+        - Categories
+      summary: Get all categories
+      responses:
+        '200':
+          description: List of categories
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  type: object
-                  properties:
-                    id: { type: string }
-                    title: { type: string }
-                    coverImage: { type: string }
-        '500':
-          description: Server error
+                  $ref: '#/components/schemas/Category'
     post:
-      summary: Create a new game
-      description: Adds a new game (admin only)
+      tags:
+        - Categories
+      summary: Create a new category
       security:
         - bearerAuth: []
       requestBody:
         required: true
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
               properties:
-                title: { type: string }
-                description: { type: string }
-                coverImage: { type: string, format: binary }
-              required: [title, coverImage]
+                name:
+                  type: string
+                  example: Action
+              required:
+                - name
       responses:
         '201':
-          description: Game created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden (non-admin)
-  /api/games/{id}:
-    get:
-      summary: Get a specific game
-      description: Retrieves details of a game by ID
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema: { type: string }
-      responses:
-        '200':
-          description: Successful response
+          description: Category created
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id: { type: string }
-                  title: { type: string }
-                  coverImage: { type: string }
+                $ref: '#/components/schemas/Category'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden (admin only)
+        '400':
+          description: Bad request (e.g., category name exists)
+  /categories/{categoryId}:
+    get:
+      tags:
+        - Categories
+      summary: Get games by category
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: List of games in category
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Game'
         '404':
-          description: Game not found
+          description: Category not found
     put:
-      summary: Update a game
-      description: Updates game details (admin only)
+      tags:
+        - Categories
+      summary: Update a category
       security:
         - bearerAuth: []
       parameters:
-        - name: id
+        - name: categoryId
           in: path
           required: true
-          schema: { type: string }
+          schema:
+            type: string
+            example: 123e4567-e89b-12d3-a456-426614174000
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Action
+              required:
+                - name
+      responses:
+        '200':
+          description: Category updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden (admin only)
+        '404':
+          description: Category not found
+    delete:
+      tags:
+        - Categories
+      summary: Delete a category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Category deleted
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden (admin only)
+        '404':
+          description: Category not found
+  /games:
+    get:
+      tags:
+        - Games
+      summary: Get all games
+      responses:
+        '200':
+          description: List of games
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Game'
+    post:
+      tags:
+        - Games
+      summary: Create a new game
+      security:
+        - bearerAuth: []
       requestBody:
         required: true
         content:
@@ -139,48 +516,157 @@ paths:
             schema:
               type: object
               properties:
-                title: { type: string }
-                description: { type: string }
-                coverImage: { type: string, format: binary }
+                title:
+                  type: string
+                  example: Awesome Game
+                description:
+                  type: string
+                  example: An exciting action game
+                platform:
+                  type: string
+                  example: PC
+                genre:
+                  type: string
+                  example: Action
+                price:
+                  type: number
+                  example: 59.99
+                stock:
+                  type: number
+                  example: 100
+                coverImage:
+                  type: string
+                  format: binary
+                category:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+              required:
+                - title
+                - description
+                - platform
+                - genre
+                - price
+                - stock
       responses:
-        '200':
-          description: Game updated
+        '201':
+          description: Game created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
         '401':
           description: Unauthorized
         '403':
-          description: Forbidden
+          description: Forbidden (admin only)
+        '400':
+          description: Bad request
+  /games/{id}:
+    get:
+      tags:
+        - Games
+      summary: Get a game by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Game details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
         '404':
           description: Game not found
-    delete:
-      summary: Delete a game
-      description: Removes a game (admin only)
+    put:
+      tags:
+        - Games
+      summary: Update a game
       security:
         - bearerAuth: []
       parameters:
         - name: id
           in: path
           required: true
-          schema: { type: string }
+          schema:
+            type: string
+            example: 123e4567-e89b-12d3-a456-426614174000
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Awesome Game
+                description:
+                  type: string
+                  example: An exciting action game
+                platform:
+                  type: string
+                  example: PC
+                genre:
+                  type: string
+                  example: Action
+                price:
+                  type: number
+                  example: 59.99
+                stock:
+                  type: number
+                  example: 100
+                coverImage:
+                  type: string
+                  format: binary
+                category:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
       responses:
-        '204':
+        '200':
+          description: Game updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden (admin only)
+        '404':
+          description: Game not found
+    delete:
+      tags:
+        - Games
+      summary: Delete a game
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
           description: Game deleted
         '401':
           description: Unauthorized
         '403':
-          description: Forbidden
+          description: Forbidden (admin only)
         '404':
           description: Game not found
-  /api/reviews/{gameId}:
+  /orders:
     post:
-      summary: Add a review
-      description: Adds a review for a specific game (authenticated users)
+      tags:
+        - Orders
+      summary: Place a new order
       security:
         - bearerAuth: []
-      parameters:
-        - name: gameId
-          in: path
-          required: true
-          schema: { type: string }
       requestBody:
         required: true
         content:
@@ -188,66 +674,254 @@ paths:
             schema:
               type: object
               properties:
-                rating: { type: integer, minimum: 1, maximum: 5 }
-                comment: { type: string }
-              required: [rating]
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      gameId:
+                        type: string
+                        example: 123e4567-e89b-12d3-a456-426614174000
+                      quantity:
+                        type: integer
+                        example: 1
+                    required:
+                      - gameId
+                      - quantity
+              required:
+                - items
       responses:
         '201':
-          description: Review added
-        '401':
-          description: Unauthorized
-        '404':
-          description: Game not found
-    get:
-      summary: Get reviews for a game
-      description: Retrieves all reviews for a specific game
-      parameters:
-        - name: gameId
-          in: path
-          required: true
-          schema: { type: string }
-      responses:
-        '200':
-          description: Successful response
+          description: Order placed
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id: { type: string }
-                    rating: { type: integer }
-                    comment: { type: string }
-                    userId: { type: string }
-        '404':
-          description: Game not found
-  /api/reviews/user:
+                $ref: '#/components/schemas/Order'
+        '401':
+          description: Unauthorized
+        '400':
+          description: Bad request
     get:
-      summary: Get user's reviews
-      description: Retrieves all reviews by the authenticated user
+      tags:
+        - Orders
+      summary: Get user's orders
       security:
         - bearerAuth: []
       responses:
         '200':
-          description: Successful response
+          description: List of user orders
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  type: object
-                  properties:
-                    id: { type: string }
-                    rating: { type: integer }
-                    comment: { type: string }
-                    gameId: { type: string }
+                  $ref: '#/components/schemas/Order'
         '401':
           description: Unauthorized
-
-components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+  /orders/{orderId}/status:
+    put:
+      tags:
+        - Orders
+      summary: Update order status
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 123e4567-e89b-12d3-a456-426614174000
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [placed, shipped, delivered, cancelled]
+                  example: shipped
+              required:
+                - status
+      responses:
+        '200':
+          description: Order status updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Order not found
+  /orders/{orderId}:
+    delete:
+      tags:
+        - Orders
+      summary: Cancel an order
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Order canceled
+        '401':
+          description: Unauthorized
+        '404':
+          description: Order not found
+  /reviews/user:
+    get:
+      tags:
+        - Reviews
+      summary: Get user's reviews
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of user reviews
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+        '401':
+          description: Unauthorized
+  /reviews/{gameId}:
+    post:
+      tags:
+        - Reviews
+      summary: Add a review for a game
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: gameId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 123e4567-e89b-12d3-a456-426614174000
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rating:
+                  type: integer
+                  example: 5
+                comment:
+                  type: string
+                  example: Amazing game!
+              required:
+                - rating
+                - comment
+      responses:
+        '201':
+          description: Review added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Game not found
+        '400':
+          description: Bad request (e.g., user already reviewed this game)
+    get:
+      tags:
+        - Reviews
+      summary: Get reviews for a game
+      parameters:
+        - name: gameId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: List of reviews
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+        '404':
+          description: Game not found
+  /wishlist:
+    get:
+      tags:
+        - Wishlist
+      summary: Get user's wishlist
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of wishlist items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+        '401':
+          description: Unauthorized
+  /wishlist/{gameId}:
+    post:
+      tags:
+        - Wishlist
+      summary: Add game to wishlist
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: gameId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '201':
+          description: Game added to wishlist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Game not found
+    delete:
+      tags:
+        - Wishlist
+      summary: Remove game from wishlist
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: gameId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Game removed from wishlist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Game not found

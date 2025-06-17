@@ -27,7 +27,7 @@
     "testTimeout": 100000
   },
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "test": "jest --runInBand"
   },
   "keywords": [],
